@@ -1,4 +1,4 @@
-# My React Application
+# Movies Night Application
 
 ## Description
 
