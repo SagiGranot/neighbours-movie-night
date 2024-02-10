@@ -3,6 +3,14 @@ import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import { useStoreActions, useStoreState } from '../data/hooks';
 
+const NoResultsMessage = () => {
+    return (
+      <div>
+        <h3>No results found</h3>
+      </div>
+    );
+  };
+
 const MoviesTable = () => {
     const { data, total, filters, isLoading } = useStoreState((state) => state.movies);
     const { fetch, setFilters } = useStoreActions((actions) => actions.movies);
@@ -36,21 +44,25 @@ const MoviesTable = () => {
                 },
             }}
         >
-            <DataGrid
-                rows={data}
-                getRowId={(row) => row.imdbID}
-                rowCount={rowCountState}
-                columns={columns}
-                loading={isLoading}
-                pagination
-                paginationModel={{ page: filters.page, pageSize: 10 }}
-                paginationMode="server"
-                onPaginationModelChange={(model, details) => {
-                    setFilters({ page: model.page, Title: filters.Title });
-                }}
-                rowSelection={false}
-                disableColumnMenu
-            />
+            {data.length === 0 ? (
+                <NoResultsMessage />
+            ): (
+                <DataGrid
+                    rows={data}
+                    getRowId={(row) => row.imdbID}
+                    rowCount={rowCountState}
+                    columns={columns}
+                    loading={isLoading}
+                    pagination
+                    paginationModel={{ page: filters.page, pageSize: 10 }}
+                    paginationMode="server"
+                    onPaginationModelChange={(model, details) => {
+                        setFilters({ page: model.page, Title: filters.Title });
+                    }}
+                    rowSelection={false}
+                    disableColumnMenu
+                />
+            )}
         </Box>
     );
 }

@@ -16,6 +16,12 @@ const SearchMovies = () => {
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
     }
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            setFilters({ Title: title, page: 0});
+        }
+    }
     
     return (
         <div className="search-bar">
@@ -25,6 +31,7 @@ const SearchMovies = () => {
                 label="Type movie name..."
                 variant="outlined"
                 onChange={onChange}
+                onKeyDown={handleKeyPress}
                 size="small"
             />
             <SearchButton
