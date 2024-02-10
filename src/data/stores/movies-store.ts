@@ -46,12 +46,14 @@ export const moviesStore = createStore<MoviesStoreModel>({
             state.error = payload;
         }),
         fetch: thunk(async (actions, payload) => {
+            actions.setIsLoading();
             try {
                 const res = await getMovies(payload);
                 actions.setData(res.data);
             } catch (e) {
                 actions.setError(e)
             }
+            actions.setIsLoading();
         }),
     },
 });

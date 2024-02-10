@@ -22,7 +22,7 @@ const SearchMovies = () => {
     return (
         <div className="search-bar">
             <TextField
-                id="movies-search"
+                name="movies-search"
                 className="search-input"
                 label="Type movie name..."
                 variant="outlined"

@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { useStoreActions, useStoreState } from '../data/hooks';
 
 const MoviesTable = () => {
-    const { data, total, filters } = useStoreState((state) => state.movies);
+    const { data, total, filters, isLoading } = useStoreState((state) => state.movies);
     const { fetch, setFilters } = useStoreActions((actions) => actions.movies);
     const [rowCountState, setRowCountState] = useState(total || 0);
 
@@ -41,6 +41,7 @@ const MoviesTable = () => {
                 getRowId={(row) => row.imdbID}
                 rowCount={rowCountState}
                 columns={columns}
+                loading={isLoading}
                 pagination
                 paginationModel={{ page: filters.page, pageSize: 10 }}
                 paginationMode="server"
