@@ -49,3 +49,12 @@ Alternatively install and run without docker:
 4. access the application in browser:
 
     http://localhost:3000
+
+## Test the application:
+    via CLI:
+    npx cypress run
+
+    via browser:
+    npx cypress open
+
+  

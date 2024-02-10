@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStoreActions } from '../data/hooks';
 import { Button, TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -11,12 +11,10 @@ const SearchButton = styled(Button)({
 
 const SearchMovies = () => {
     const { setFilters } = useStoreActions((actions) => actions.movies);
+    const [ title, setTitle ] = useState('')
     
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFilters({
-            Title: event.target.value,
-            page: 0
-        })
+        setTitle(event.target.value);
     }
     
     return (
@@ -29,7 +27,13 @@ const SearchMovies = () => {
                 onChange={onChange}
                 size="small"
             />
-            <SearchButton className="search-btn" variant="contained">Search</SearchButton>
+            <SearchButton
+                className="search-btn"
+                variant="contained"
+                onClick={() => setFilters({ Title: title, page: 0})}
+            >
+                Search
+            </SearchButton>
       </div>
     );
 }

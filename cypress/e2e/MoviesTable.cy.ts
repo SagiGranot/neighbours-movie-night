@@ -20,8 +20,9 @@ describe('MovieTable', () => {
   });
 
   it('filters movies data', () => {
-    cy.get('input[name=movies-search]').type('Walk');
-    cy.wait(['@getMovies','@getMovies','@getMovies','@getMovies']);
+    cy.get('input[name=movies-search]').type('Spiderman');
+    cy.get('.MuiButton-root').click();
+    cy.wait('@getMovies');
     cy.get('.MuiDataGrid-virtualScroller').find('.MuiDataGrid-row').should('have.length.gt', 0);
   });
 });
