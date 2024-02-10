@@ -3,10 +3,9 @@
 }
 
 .search-input {
-    margin-right: 5px;
-    width: 240px;
+    width: 340px;
 }
 
 .search-btn {
-    margin-top: 1px;
+    top: 1px;
 }
